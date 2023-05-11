@@ -5,6 +5,10 @@ import java.awt.Toolkit
 import javax.swing.JFrame
 
 object Application : JFrame() {
+
+    fun Double.vw(): Int = (Application.size.width * this).toInt()
+    fun Double.vh(): Int = (Application.size.height * this).toInt()
+
     @JvmStatic
     fun main(args: Array<String>) {
         title = "JThesaurus"

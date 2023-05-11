@@ -33,10 +33,10 @@ object HomeView: JPanel() {
 
         /* TextField Layout */
         this.layout.putConstraint(WEST, searchField, 0.3.vw(), WEST, this)
-        /*this.layout.putConstraint(EAST, searchField, (-0.05).vw(), WEST, searchButton)*/
         this.layout.putConstraint(SpringLayout.NORTH, searchField, 0.465.vh(), SpringLayout.NORTH, this)
         this.layout.putConstraint(SpringLayout.SOUTH, searchField, (-0.465).vh(), SpringLayout.SOUTH, this)
 
+        /* Search Button Layout */
         this.layout.putConstraint(WEST, searchButton, 0.005.vw(), EAST, searchField)
         this.layout.putConstraint(EAST, searchButton, (-0.3).vw(), EAST, this)
         this.layout.putConstraint(SpringLayout.NORTH, searchButton, 0.465.vh(), SpringLayout.NORTH, this)

@@ -21,6 +21,7 @@ dependencies {
 
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jackson.version")}")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${findProperty("jackson.version")}")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${findProperty("jackson.version")}")
 
     testImplementation(kotlin("test"))
 }

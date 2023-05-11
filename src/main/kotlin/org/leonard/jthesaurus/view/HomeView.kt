@@ -5,7 +5,9 @@ import com.formdev.flatlaf.util.Animator
 import org.leonard.jthesaurus.Application
 import org.leonard.jthesaurus.Application.vh
 import org.leonard.jthesaurus.Application.vw
+import org.leonard.jthesaurus.model.devdict.load
 import org.leonard.jthesaurus.util.FontLoader.comfortaa
+import org.slf4j.LoggerFactory
 import java.awt.Dimension
 import javax.swing.JButton
 import javax.swing.JPanel
@@ -14,10 +16,11 @@ import javax.swing.SpringLayout
 import javax.swing.SpringLayout.*
 
 object HomeView: JPanel(), TimingTarget {
-    private val inlineMargin = 0.2
+    private val logger = LoggerFactory.getLogger(HomeView::class.java)
+
+    private const val inlineMargin = 0.2
 
     private val layout: SpringLayout
-
     private val animator: Animator
 
     private val searchField: JTextField
@@ -44,6 +47,7 @@ object HomeView: JPanel(), TimingTarget {
         this.searchButton.font = this.searchButton.font.deriveFont(16f)
         this.searchButton.addActionListener {
             animator.start()
+            logger.info("{}", load(searchField.text))
         }
 
         /* Definition View */
@@ -54,7 +58,6 @@ object HomeView: JPanel(), TimingTarget {
         /* TextField Layout */
         this.layout.putConstraint(WEST, searchField, inlineMargin.vw(), WEST, this)
         this.layout.putConstraint(NORTH, searchField, 0.465.vh(), NORTH, this)
-//        this.layout.putConstraint(SOUTH, searchField, (-0.465).vh(), SOUTH, this)
 
         /* Search Button Layout */
         this.layout.putConstraint(WEST, searchButton, 0.005.vw(), EAST, searchField)

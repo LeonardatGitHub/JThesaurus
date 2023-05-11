@@ -1,9 +1,9 @@
 plugins {
-    id("java")
+    kotlin("jvm") version "1.8.20"
 }
 
 group = "org.leonard"
-version = "1.0-SNAPSHOT"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -16,4 +16,8 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+}
+
+kotlin {
+    jvmToolchain(17)
 }

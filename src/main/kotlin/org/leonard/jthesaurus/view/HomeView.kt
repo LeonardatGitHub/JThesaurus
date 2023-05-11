@@ -3,6 +3,7 @@ package org.leonard.jthesaurus.view
 import org.leonard.jthesaurus.Application
 import org.leonard.jthesaurus.Application.vh
 import org.leonard.jthesaurus.Application.vw
+import org.leonard.jthesaurus.util.FontLoader.comfortaa
 import java.awt.Dimension
 import javax.swing.JButton
 import javax.swing.JPanel
@@ -25,11 +26,13 @@ object HomeView: JPanel() {
         this.searchField = JTextField()
         this.searchField.preferredSize = Dimension(320, 40)
         this.searchField.maximumSize = this.searchField.preferredSize
+        this.searchField.font = comfortaa(20)
 
         /* Search Button */
-        this.searchButton = JButton("Search")
+        this.searchButton = JButton("\uD83D\uDD0E")
         this.searchButton.preferredSize = Dimension(80, 40)
         this.searchButton.maximumSize = this.searchButton.preferredSize
+        this.searchButton.font = this.searchButton.font.deriveFont(16f)
 
         /* TextField Layout */
         this.layout.putConstraint(WEST, searchField, 0.3.vw(), WEST, this)

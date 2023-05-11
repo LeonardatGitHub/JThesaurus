@@ -5,16 +5,16 @@ import java.net.URL
 
 data class DevDictWord(
     var word: String,
-    var phonetic: String,
+    var phonetic: String?,
     var phonetics: List<DevDictPhonetic>,
     var origin: String?,
     var meanings: List<DevDictMeaning>,
-    var license: DevDictLicense,
-    var source: List<String>
+    var license: DevDictLicense?,
+    var sourceUrls: List<String>?
 )
 
 data class DevDictPhonetic(
-    var text: String,
+    var text: String?,
     var audio: String?,
     var sourceUrl: String?,
     var license: DevDictLicense?
@@ -39,10 +39,9 @@ data class DevDictLicense(
     var url: String
 )
 
-@Suppress("UNCHECKED_CAST")
-fun load(word: String): List<DevDictWord> {
+fun load(word: String): Array<DevDictWord> {
     return jacksonObjectMapper().readValue(
         URL("https://api.dictionaryapi.dev/api/v2/entries/en/$word"),
-        List::class.java
-    ) as List<DevDictWord>
+        Array<DevDictWord>::class.java
+    )
 }

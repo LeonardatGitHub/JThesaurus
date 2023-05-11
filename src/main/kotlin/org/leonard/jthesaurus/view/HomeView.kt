@@ -7,6 +7,7 @@ import org.leonard.jthesaurus.Application.vh
 import org.leonard.jthesaurus.Application.vw
 import org.leonard.jthesaurus.model.devdict.load
 import org.leonard.jthesaurus.util.FontLoader.comfortaa
+import org.leonard.jthesaurus.view.devdict.DevDictResults
 import org.slf4j.LoggerFactory
 import java.awt.Dimension
 import javax.swing.JButton
@@ -16,6 +17,7 @@ import javax.swing.SpringLayout
 import javax.swing.SpringLayout.*
 
 object HomeView: JPanel(), TimingTarget {
+    @Suppress("unused")
     private val logger = LoggerFactory.getLogger(HomeView::class.java)
 
     private const val inlineMargin = 0.2
@@ -25,7 +27,7 @@ object HomeView: JPanel(), TimingTarget {
 
     private val searchField: JTextField
     private val searchButton: JButton
-    private val definitions: DefinitionView
+    private val definitions: DevDictResults
 
     init {
         this.preferredSize = Application.size
@@ -47,11 +49,10 @@ object HomeView: JPanel(), TimingTarget {
         this.searchButton.font = this.searchButton.font.deriveFont(16f)
         this.searchButton.addActionListener {
             animator.start()
-            logger.info("{}", load(searchField.text))
         }
 
         /* Definition View */
-        this.definitions = DefinitionView()
+        this.definitions = DevDictResults(arrayOf())
         this.definitions.preferredSize = Dimension(610, 0)
         this.definitions.maximumSize = this.definitions.preferredSize
 
@@ -68,7 +69,7 @@ object HomeView: JPanel(), TimingTarget {
         /* Definition View */
         this.layout.putConstraint(WEST, definitions, 0, WEST, searchField)
         this.layout.putConstraint(EAST, definitions, 0, EAST, searchButton)
-        this.layout.putConstraint(NORTH, definitions, 0.005.vh(), SOUTH, searchField)
+        this.layout.putConstraint(NORTH, definitions, 0.01.vh(), SOUTH, searchField)
         this.layout.putConstraint(SOUTH, definitions, 0, NORTH, definitions)
 
         /* TextField Finalization */
@@ -85,5 +86,9 @@ object HomeView: JPanel(), TimingTarget {
         this.layout.putConstraint(SOUTH, definitions, (fraction * 0.6).vh(), NORTH, definitions)
 
         this.revalidate()
+    }
+
+    override fun end() {
+        definitions.update(load(searchField.text))
     }
 }

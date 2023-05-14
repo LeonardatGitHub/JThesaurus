@@ -10,10 +10,11 @@ public class Application extends JFrame {
     private static Application application;
 
     public static void main(String[] args) {
-        application = new Application();
+        new Application();
     }
 
-    private Application(){
+    private Application() {
+        application = this;
         Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
         fullscreen.setSize(fullscreen.getWidth()  * 0.4, fullscreen.getHeight() * 0.75);
         setTitle("OMEGATITLE");
@@ -24,5 +25,13 @@ public class Application extends JFrame {
         getContentPane().add(new HomeView(), BorderLayout.CENTER);
 
         setVisible(true);
+    }
+
+    public static int vw(double percentage) {
+        return (int) (application.getWidth() * percentage);
+    }
+
+    public static int vh(double percentage) {
+        return (int) (application.getHeight() * percentage);
     }
 }

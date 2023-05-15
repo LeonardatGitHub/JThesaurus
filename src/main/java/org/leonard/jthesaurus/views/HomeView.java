@@ -10,6 +10,7 @@ import static org.leonard.jthesaurus.Application.vw;
 public class HomeView extends JPanel {
 
     TextField textField;
+    JButton textButton;
 
     double inlineMargin = 0.3;
 
@@ -32,6 +33,15 @@ public class HomeView extends JPanel {
         this.springLayout.putConstraint(NORTH, textField, vh(0.465), NORTH, this);
         this.add(textField);
         this.repaint();
+
+        textButton = new JButton("\uD83D\uDD0E");
+        this.textButton.setPreferredSize(new Dimension(80   , 40));
+        this.textButton.setMaximumSize(this.textButton.preferredSize());
+        this.textButton.setFont(this.textButton.getFont().deriveFont(16f));
+        //this.textButton.addActionListener();
+        this.add(textButton);
+
     }
+
 
 }

@@ -1,5 +1,7 @@
 package org.leonard.jthesaurus;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
 import org.leonard.jthesaurus.views.HomeView;
 
 import javax.swing.*;
@@ -10,11 +12,13 @@ public class Application extends JFrame {
     private static Application application;
 
     public static void main(String[] args) {
+        setLookAndFeel();
         new Application();
     }
 
     private Application() {
         application = this;
+
         Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
         fullscreen.setSize(fullscreen.getWidth()  * 0.4, fullscreen.getHeight() * 0.75);
         setTitle("OMEGATITLE");
@@ -33,5 +37,14 @@ public class Application extends JFrame {
 
     public static int vh(double percentage) {
         return (int) (application.getHeight() * percentage);
+    }
+
+    public static void setLookAndFeel() {
+        try {
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
+            //SwingUtilities.updateComponentTreeUI(application);
+        } catch (UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
